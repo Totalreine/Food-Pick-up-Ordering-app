@@ -1,5 +1,6 @@
 const { generateEmptyUser } = require('../lib/helpers');
 const db = require('../db/connection');
+const router = require('../routes/users-api');
 
 exports.getLogin = (req, res) => {
     
@@ -62,7 +63,8 @@ exports.postLogin = (req, res) => {
         .catch(err => {
           res.status(500).json({ error: err.message });
         });
-    }
+    } 
+    return router;
   };
 
 exports.getSignup = (req, res) => {
@@ -140,12 +142,8 @@ exports.postSignup = (req, res) => {
           .status(500)
           .json({ error: err.message });
       });
+      return router;
   };
-
-
-exports.getReset = (req, res) => {}
-
-exports.postReset = (req, res) => {}
 
 exports.postLogout = (req, res) => {
   req.session = null;
