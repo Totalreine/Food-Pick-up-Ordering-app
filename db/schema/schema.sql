@@ -1,0 +1,81 @@
+
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY NOT NULL,
+  first_name VARCHAR(255) NOT NULL,
+  last_name VARCHAR(255) NOT NULL,
+  phone_number VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  address VARCHAR(255) NOT NULL,
+  city VARCHAR(255) NOT NULL,
+  postal_code VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE restaurants (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  first_name VARCHAR(255) NOT NULL,
+  last_name VARCHAR(255) NOT NULL,
+  phone_number VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  address VARCHAR(255) NOT NULL,
+  city VARCHAR(255) NOT NULL,
+  postal_code VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE dishes (
+  id SERIAL PRIMARY KEY NOT NULL,
+  restaurant_id INTEGER REFERENCES restaurants(id) ON DELETE CASCADE,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  price INTEGER NOT NULL,
+  food_category VARCHAR(255) NOT NULL,
+  vegan BOOLEAN NOT NULL DEFAULT FALSE,
+  gluten_free BOOLEAN NOT NULL DEFAULT FALSE,
+  picture_url VARCHAR(255) NOT NULL,
+  rating SMALLINT NOT NULL DEFAULT 0
+);
+
+CREATE TABLE orders (
+  id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  order_status VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP,
+  finished_at TIMESTAMP,
+  order_total_price INTEGER  NOT NULL DEFAULT 0
+);
+
+CREATE TABLE payments (
+  id SERIAL PRIMARY KEY NOT NULL,
+  order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE,
+  payment_type VARCHAR(255) NOT NULL,
+  amount INTEGER  NOT NULL DEFAULT 0,
+  created_at DATE NOT NULL
+);
+
+CREATE TABLE carts (
+  id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  cart_total_price INTEGER  NOT NULL DEFAULT 0,
+  created_at DATE NOT NULL
+);
+
+CREATE TABLE cart_details (
+  id SERIAL PRIMARY KEY NOT NULL,
+  cart_id INTEGER REFERENCES carts(id) ON DELETE CASCADE,
+  dish_id INTEGER REFERENCES dishes(id) ON DELETE CASCADE,
+  quantity INTEGER NOT NULL DEFAULT 0
+);
+
+
+CREATE TABLE order_details (
+  id SERIAL PRIMARY KEY NOT NULL,
+  order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE,
+  dish_id INTEGER REFERENCES dishes(id) ON DELETE CASCADE,
+  quantity INTEGER NOT NULL DEFAULT 0
+);
+
+
+
+
