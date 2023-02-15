@@ -1,4 +1,6 @@
+const { generateEmptyUser } = require('../lib/helpers');
 const db = require('../db/connection');
+const router = require('../routes/users-api');
 
 exports.getLogin = (req, res) => {
     
@@ -15,44 +17,8 @@ exports.getLogin = (req, res) => {
       
 }
 
-exports.postLogin = (req, res) => {}
-
-exports.getSignup = (req, res) => {}
-
-exports.postSignup = (req, res) => {}
-
-exports.getReset = (req, res) => {}
-
-exports.postReset = (req, res) => {}
-
-exports.postLogout = (req, res) => {}
-
-
-// Secure authentication
-const bcrypt = require("bcrypt");
-
-const { generateEmptyUser } = require("../lib/helpers");
-
-module.exports = (db) => {
-
-  // GET of /login
-  router.get("/", (req, res) => {
-    const userId = req.session.userId || "";
-    if (userId) {
-      res.redirect("/");
-    } else {
-      const user = generateEmptyUser();
-      const { statusCode } = 200;
-      const errorMessage = "";
-      const params = { user, statusCode, errorMessage };
-      res.render("login", params);
-    }
-  });
-
-
-  // POST of /login
-  router.post("/", (req, res) => {
-    const userId = req.session.userId || "";
+exports.postLogin = (req, res) => {
+  const userId = req.session.userId || "";
 
     if (userId) {
       res.redirect("/");
@@ -70,7 +36,7 @@ module.exports = (db) => {
       res.render("login", params);
     } else {
       const getPasswordQuery = {
-        text: `SELECT id, password FROM users WHERE email = $1`,
+        text: `SELECT id, password FROM customers WHERE email = $1`,
         values: [formEmail]
       };
 
@@ -81,7 +47,7 @@ module.exports = (db) => {
           if (bcrypt.compareSync(formPassword, userInfo.password)) {
             req.session.userId = userInfo.id;
             if (userInfo.admin) {
-              res.redirect(`/owners/${userInfo.id}/orders`);
+              res.redirect(`/dishes/${userInfo.id}/orders`);
             } else {
               res.redirect("/");
             }
@@ -97,22 +63,92 @@ module.exports = (db) => {
         .catch(err => {
           res.status(500).json({ error: err.message });
         });
+    } 
+    return router;
+  };
+
+exports.getSignup = (req, res) => {
+  const userId = req.session.userId || '';
+    if (userId) {
+      res.redirect('/');
+    } else {
+      const user = generateEmptyUser();
+      const {statusCode} = 200;
+      const errorMessage = '';
+      const params = {user, statusCode, errorMessage};
+      res.render('signup', params);
     }
-  });
-  return router;
-};
+}
 
-//LOGOUT
+exports.postSignup = (req, res) => {
+  const userId = req.session.userId || '';
 
-const express = require('express');
-const router  = express.Router();
+    if (userId) {
+      res.redirect('/');
+    }
 
-module.exports = () => {
+    const { first_name, last_name, phoneNumber, email, password, city, address, postal_code} = req.body;
 
-  // POST of /logout
-  router.post("/", (req, res) => {
-    req.session = null;
+   
+
+    if (!first_name || !last_name || !phoneNumber || !email || !password || !city || !address || !postal_code) {
+      const user = generateEmptyUser();
+      const {statusCode} = 400;
+      const errorMessage = 'all fields must have a value';
+      const params = {user, statusCode, errorMessage};
+      res.render('signup', params);
+    }
+
+    const getUserIdQuery = {
+      text: `SELECT id FROM customers WHERE email = $1`,
+      values: [email],
+    };
+
+    db.query(getUserIdQuery)
+      .then(data => {
+        const existUser = data.rows[0];
+
+        if (!existUser) {
+
+          const insertUserQuery = {
+            text: `INSERT INTO customers (first_name, last_name, email, phone_number, password, city, address, postal_code)
+              VALUES ($1, $2, $3, $4, $5, $6, $7)
+              RETURNING id;`,
+            values: [first_name, last_name, email, phoneNumber, password, city, address, postal_code],
+          };
+
+          db.query(insertUserQuery)
+            .then(userInfo => {
+              const newUserId = userInfo.rows[0].id;
+
+              req.session.userId = newUserId;
+              res.redirect('/'); // Could redirect to user page instead!!!
+            })
+            .catch(err => {
+              res
+                .status(500)
+                .json({ error: err.message });
+            });
+        } else {
+          const user = generateEmptyUser();
+          const {statusCode} = 400;
+          const errorMessage = 'you seem to already exit in our systems';
+          const params = {user, statusCode, errorMessage};
+          res.render('signup', params);
+        }
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+      return router;
+  };
+
+exports.postLogout = (req, res) => {
+  req.session = null;
     res.redirect('/');
-  });
   return router;
 };
+
+
