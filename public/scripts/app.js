@@ -1,3 +1,4 @@
+
 // Client facing scripts here
 const createMenuItem = function (dishs) {
   const $item = $("<article>")
@@ -151,7 +152,7 @@ $(document).ready(function () {
       getCarts.comment = $('#comment').val();
       $.ajax({
         method: "POST",
-        url: "/api/orders",
+        url: "/orders",
         data: getCarts
       }).done((obj) => {
         console.log('clear');
