@@ -87,11 +87,11 @@ exports.postSignup = (req, res) => {
       res.redirect('/');
     }
 
-    const { first_name, last_name, phoneNumber, email, password, city, address, postal_code} = req.body;
+    const { first_name, last_name, phone_number, email, password, city, address, postal_code} = req.body;
 
    
 
-    if (!first_name || !last_name || !phoneNumber || !email || !password || !city || !address || !postal_code) {
+    if (!first_name || !last_name || !phone_number || !email || !password || !city || !address || !postal_code) {
       const user = generateEmptyUser();
       const {statusCode} = 400;
       const errorMessage = 'all fields must have a value';
@@ -114,7 +114,7 @@ exports.postSignup = (req, res) => {
             text: `INSERT INTO customers (first_name, last_name, email, phone_number, password, city, address, postal_code)
               VALUES ($1, $2, $3, $4, $5, $6, $7)
               RETURNING id;`,
-            values: [first_name, last_name, email, phoneNumber, password, city, address, postal_code],
+            values: [first_name, last_name, email, phone_number, password, city, address, postal_code],
           };
 
           db.query(insertUserQuery)
