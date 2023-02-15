@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -19,6 +19,80 @@
 
 <body>
   <h1>Have fun! 🥔</h1>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" />
+  <link rel="stylesheet" href="/styles/menu.css">
+
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/app.js"></script>
+  <script defer src="/scripts/cart.js"></script>
+  <script defer src="/scripts/users.js"></script>
+
+
+
+
+  <title>The Cupcake Shop</title>
+
+
+</head>
+
+<body>
+  <%- include('partials/_header') %>
+    <main class="main-container">
+      <section>
+        <div class="menu-section">
+          <ul>
+            <li class="menu-categories">
+              <hr>
+              <a class="FlavMonth" href="#Flavour of the Month">Flavour of the Month</a>
+              <a class="Classic" href="#Classic">Classic</a>
+              <a class="Vegan" href="#Vegan">Vegan</a>
+              <a class="GF" href="#Gluten Free">Gluten Free</a>
+              <hr>
+          </ul>
+        </div>
+      </section>
+      </div>
+      <h3>Flavour of the Month</h3>
+      <section id="FlavMonth">
+        <div class="CherryLove">
+          <img src="/images/CherryLoveCupcake.jpeg" alt="Cherry Love">
+          <h4>Cherry Love</h4>
+          <p>Chocolate cake filled with cherry jam and topped with pink buttercream frosting and a cherry</p>
+        </div>
+        <div class="SweetHeart">
+          <img src="/images/SweetHeartCupcake.jpeg" alt="Sweet Heart">
+          <h4>Sweet Heart</h4>
+          <p>Vanilla cake with pink vanilla buttercream frosting topped with sprinkles</p>
+        </div>
+      </section>
+
+      <h3>Classic </h3>
+      <section id="Classic">
+        <div class="Chocolate">
+          <img src="/images/ChocolateCupcake.jpeg" alt="Chocolate">
+          <h4>Chocolate</h4>
+          <p>Chocolate cake with chocolate buttercream frosting</p>
+        </div>
+        <div class="RedVelvet">
+          <img src="/images/RedVelvetCupcake.jpeg" alt="Red Velvet">
+          <h4>Red Velvet</h4>
+          <p>Red velvet cake topped with cream cheese frosting</p>
+        </div>
+      </section>
+    </main>
 </body>
 
 </html>
