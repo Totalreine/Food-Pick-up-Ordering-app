@@ -29,11 +29,11 @@ module.exports = db => {
 
   //Post to cart
   router.post("/", (req, res) => {
-    const { ID, Menu_items_id, Customer_id } = req.body;
+    const { cart_total_price, customer_id, created_at} = req.body;
     console.log(req.body);
     db.query(
-      `INSERT INTO carts (id, Menu_items_id, Customer_id ) VALUES ($1,$2,$3) RETURNING *`,
-      [ID, Menu_items_id, Customer_id]
+      `INSERT INTO carts (customer_id, cart_total_price, created_at ) VALUES ($1,$2,$3) RETURNING *`,
+      [cart_total_price, customer_id, created_at]
     )
       .then(data => {
         const carts = data;
