@@ -19,3 +19,5 @@ router.post('/add-dish', restaurantController.postAddDish)
 router.post('/edit-dish/:dishId', restaurantController.postEditDish)
 
 router.delete('/edit-dish/:dishId', restaurantController.deleteDish)
+
+module.exports = router
