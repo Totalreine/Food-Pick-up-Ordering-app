@@ -42,7 +42,7 @@ img {
   object-fit: cover;
 }
 
-#FlavMonth, #Classic {
+#FlavMonth, #Classic, #Vegan, #GF {
   margin: 15px;
   height: auto;
   border-radius: 10px;
@@ -51,6 +51,6 @@ img {
   display: flex;
 }
 
-.CherryLove, .Chocolate {
+.CherryLove, .Chocolate, .Coconut, .Coffee {
   margin-right: 5em;
 }
