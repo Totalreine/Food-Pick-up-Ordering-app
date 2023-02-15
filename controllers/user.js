@@ -1,5 +1,5 @@
 const db = require('../db/connection');
-const router = require('../routes/users-api');
+
 
 exports.getDishes = (req, res) => {
 
@@ -29,7 +29,6 @@ exports.getDish = (req, res) => {
           .json({ error: err.message });
       });
       
-  
 };
 
 exports.getCarts = (req, res) => {
@@ -215,9 +214,3 @@ exports.postOrders = (req, res) => {
   };
 }
 
-
-
-
-  
-
-  

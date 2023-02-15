@@ -15,7 +15,7 @@ exports.postEditDish = (req, res) => {}
 exports.deleteDish = (req, res) => {}
 
 
-
+/*
 module.exports = (db) => {
     router.get("/dishes", (req, res) => {
       db.query(`SELECT * FROM dishes`)
@@ -50,3 +50,4 @@ module.exports = (db) => {
   
     return router;
   };
+  */

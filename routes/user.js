@@ -30,3 +30,6 @@ router.post('/cart',userController.postCart)
 
 router.get('/orders/:orderId', userController.getOrder)
 
+router.post('/cart-delete-dish', userController.postDeleteDish)
+
+module.exports = router
