@@ -22,11 +22,11 @@ exports.getDishes = (req, res) => {
 
 exports.getDish = (req, res) => {
   const id = req.params.dishId
-   
+
     db.query(`SELECT * FROM dishes WHERE id = $1`,[id])
       .then(data => {
         const dish = data.rows[0].name;
-        
+
         res.json({ dish });
         res.send(dish)
       })
@@ -75,11 +75,14 @@ exports.postRestCompleted = (req, res) => {
 
 
 exports.getEditDish = (req, res) => {
-  const id = req.params.dishId
-    db.query(`SELECT * FROM dishes WHERE id = $1`,[id])
+  const id = parseInt(req.params.id);
+    db.query(`UPDATE dishes
+    SET name = $1, description = $2, food_category = $3, vegan = $4, gluten_free = $, picture_url = $6,
+    price = $7, rating = $8,
+    WHERE id = $9;`,[id])
       .then(data => {
         const dish = data.rows[0];
-       
+
         res.render("editDishtest", {dish})
       })
       .catch(err => {
@@ -93,10 +96,10 @@ exports.getEditDish = (req, res) => {
 
 exports.postAddDish = (req, res) => {
   const {name, description, price, food_category, vegan, gluten_free, picture_url, rating} = req.body;
-   
+
     db.query(
-             `INSERT INTO dishes ( name, description, price, 
-              food_category, vegan, gluten_free, picture_url, rating ) 
+             `INSERT INTO dishes ( name, description, price,
+              food_category, vegan, gluten_free, picture_url, rating )
               VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
       [name, description, price, food_category, vegan, gluten_free, picture_url, rating]
     )
@@ -112,9 +115,9 @@ exports.postAddDish = (req, res) => {
 }
 
 exports.postEditDish = (req, res) => {
-  
+
   const {id, name, description, price, food_category, vegan, gluten_free, picture_url, rating} = req.body;
-    
+
        db.query(
           `UPDATE dishes SET name = $1, description = $2, price = $3, food_category = $4, vegan = $5, gluten_free = $6, picture_url = $7, rating = $8 WHERE id = $9 RETURNING *`,
          [name, description, price, food_category, vegan, gluten_free, picture_url, rating, id]
@@ -132,7 +135,7 @@ exports.postEditDish = (req, res) => {
 
 exports.deleteDish = (req, res) => {
     const id = req.body.id;
-    
+
     db.query(
       `DELETE FROM dishes WHERE id = $1 RETURNING *`,
       [id]
@@ -147,7 +150,5 @@ exports.deleteDish = (req, res) => {
       });
   };
 
-  
-  
-  
-  
+
+
