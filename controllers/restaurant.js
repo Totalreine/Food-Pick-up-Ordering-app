@@ -42,7 +42,7 @@ exports.getAddDish = (req, res) => {
   res.render("addDishtest")
 }
 
-exports.getRestConfirm = ('/restaurant_confirm/:id', (req, res) => {
+exports.getRestConfirm = (req, res) => {
   let order_id = req.params.id;
   let totals = { subtotal: 0, tax: 0, total: 0 };
   checkoutItems(order_id, (err, checkoutStuff) => {
@@ -59,19 +59,19 @@ exports.getRestConfirm = ('/restaurant_confirm/:id', (req, res) => {
 
     res.render('restaurant', { checkoutStuff, order_id, totals});
   });
-});
+};
 
-exports.postRestConfirm = ('/confirm_order',(req,res) => {
+exports.postRestConfirm = (req,res) => {
   timeConfirmed(req.body.time_est);
   created_at(req.body.order_id, true, req.body.time_est);
   res.send(req.body.time_est)
-});
+};
 
-exports.postRestCompleted =('/completed', (req, res) => {
+exports.postRestCompleted = (req, res) => {
   finished_at(req.body.order_id, true);
   orderCompleted();
   res.send(req.body.order_id)
-});
+};
 
 
 exports.getEditDish = (req, res) => {
