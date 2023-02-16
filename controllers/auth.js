@@ -86,7 +86,6 @@ exports.getLogin = (req, res) => {
   
         const userId = req.session.userId || "";
         if (userId) {
-          console.log(userId)
           res.redirect("/");
         } else {
           const user = generateEmptyUser();
