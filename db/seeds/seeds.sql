@@ -32,4 +32,3 @@ picture_url, rating ) VALUES ('steak', 'steak very tender and juicy', '15000', '
 INSERT INTO dishes (name, description, price, food_category, vegan, gluten_free, 
 picture_url, rating ) VALUES ('sandwich', 'tuna sandwich with salad', '50000', 'fastFood', 'false', 'true', 'imageurl3', '4' );
 
-  

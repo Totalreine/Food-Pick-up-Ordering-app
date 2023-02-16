@@ -4,9 +4,9 @@ const db = require('../db/connection');
 
 const userController = require('../controllers/user')
 
-router.get('/dishes', userController.getDishes)
+//router.get('/dishes', userController.getDishes)
 
-router.get('/dishes/:dishId', userController.getDish)
+//router.get('/dishes/:dishId', userController.getDish)
 
 router.get('/cart', userController.getCart)
 

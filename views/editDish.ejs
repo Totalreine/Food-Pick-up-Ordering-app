@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Signup</title>
+        
+        
+    </head>
+    <body>
+        <h2>Food-pickup App</h2>
+        <h4>Create a User Account</h4>
+        <br>
+        
+        <form action="/edit-dish" method="post" id="signup">
+            
+         <!-- <label for="restaurant-name">Restaurant name:</label>
+            <input type="text" name="restaurant-name"> -->
+            <br>
+            <div style="display: none;">
+            <input type="text" name="id" value="<%= dish.id %>">
+            </div>
+            <br>
+            <br>
+            <label for="first-name">name</label>
+            <input type="text" name="name" value="<%= dish.name %>">
+            <br>
+            <br>
+            <label for="last-name">description</label>
+            <input type="text" name="description" value="<%= dish.description %>">
+            <br>
+            <br>
+            <label for="phone-number">Price</label>
+            <input type="text" name="price" value="<%= dish.price %>">
+            <br>
+            <br>
+            <label for="email">foddC</label>
+            <input type="text" name="food_category" value="<%= dish.food_category %>">
+            <br>
+            <br>
+            <label for="password">vegan</label>
+            <input type="text" name="vegan" value="<%= dish.vegan %>">
+            <br>
+            <br>
+            <label for="address">gluten</label>
+            <input type="text" name="gluten_free" value="<%= dish.gluten_free %>">
+            <br>
+            <br>
+            <label for="city">picture</label>
+            <input type="text" name="picture_url" value="<%= dish.picture_url %>">
+            <br>
+            <br>
+            <label for="postal-code">rating</label>
+            <input type="text" name="rating" value="<%= dish.rating %>"> 
+            <button type="submit" form="signup" value="Submit" style="position: relative;">edit</button>
+        </form>
+        <br>
+        <form action="/delete-dish" method="post">
+            <div>
+            <input type="text" name="id"  value="<%= dish.id %>">
+            </div> 
+            <button type="submit" form="signup" value="Submit" style="position: relative;">delete</button>
+        </form>
+        
+        <br>
+        <p>If you're already registered, go to <a href="/login">Login</a></p>
+    </body>
+</html>
