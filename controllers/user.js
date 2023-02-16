@@ -1,5 +1,7 @@
 const db = require('../db/connection');
 const { checkoutItems } = require('../db/queries/users');
+const { timeConfirmed, orderCompleted } = require('../routes/twilo');
+
 
 
 exports.getDishes = (req, res) => {
@@ -224,6 +226,15 @@ exports.postCart = (req, res) => {
 }
 
 exports.postOrders = (req, res) => {
+
+  timeConfirmed(req.body.time_est);
+  created_at(req.body.order_id, true, req.body.time_est);
+  res.send(req.body.time_est)
+
+  finished_at(req.body.order_id, true);
+  orderCompleted();
+  res.send(req.body.order_id)
+
   const customer_id = req.session.customer_id || '';
     const processedOrder = req.body.cart;
     if (customer_id && processedOrder) {
