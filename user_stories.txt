@@ -1,0 +1,101 @@
+User stories for food pickup ordering:
+
+1 .As a customer, I want to be able to quickly and easily order my food.
+
+2. As a restaurant owner, I want to be able to manage my orders, so that I can ensure timely and accurate creation of food for customers.
+
+3. As a customer, I want to be able to view the status of my order in real-time, so that I can know when to pick up my food.
+
+STRETCH : As someone with dietary restrictions, I want to be able to easily filter restaurants and menu items based on my preferences, so that I can find food that meets my needs.
+
+STRETCH : As a customer, I want to be able to rate and review items, so that I can help others make informed decisions about where to order from.
+
+
+
+
+
+
+//OLD USER STORIES
+
+As a busy office worker, I want to be able to quickly and easily order my lunch so that I don't have to waste time going out to get food.
+
+As a busy parent, I want to be able to order dinner for my family from the comfort of my couch, so that I don't have to spend time cooking after a long day.
+
+As a student living on campus, I want to be able to order food from my phone so that I can enjoy a hot meal without leaving my dorm.
+
+As a foodie, I want to be able to browse restaurant menus and easily place an order for delivery, so that I can try new restaurants and cuisines.
+
+As someone with dietary restrictions, I want to be able to easily filter restaurants and menu items based on my preferences, so that I can find food that meets my needs.
+
+As a restaurant owner, I want to be able to manage my delivery orders and track delivery drivers, so that I can ensure timely and accurate delivery of food to customers.
+
+As a customer, I want to be able to view the status of my delivery in real-time, so that I can know when to expect my food to arrive.
+
+As a customer, I want to be able to rate and review restaurants and delivery drivers, so that I can help others make informed decisions about where to order from.
+
+Feature for this app
+
+Restaurant Directory: A directory of restaurants available for delivery, including their menu items, pricing, and ratings from other users.
+
+Order Placement: An interface for placing an order, including selecting menu items, adding special requests, and paying for the order.
+
+Real-Time Tracking: The ability to track the status of an order in real-time, including the location of the delivery driver.
+
+Delivery Scheduling: The option to schedule a delivery for a specific time or to request immediate delivery.
+
+Payment Processing: Secure payment processing, including the option to save payment information for future orders.
+
+Push Notifications: Push notifications to notify users of order updates and delivery status.
+
+Review and Rating System: A system for users to rate and review restaurants and delivery drivers, providing valuable feedback for both customers and business owners.
+
+Customer Support: A way for customers to get in touch with customer support, either through an in-app chat or by phone.
+
+
+
+Routes
+
+//Users
+
+GET /users - Browse users
+
+GET /users/:user_id - Read specific user
+
+POST /users - Create new user
+
+PUT /users/:user_id - Edit a specific user
+
+DELETE /users/:user_id/ - Delete a user
+
+//Dishes
+
+GET /dishes - Browse dishes
+
+GET /dishes/:dish_id - Read specific dish
+
+//Order
+
+GET /orders - Browse orders page
+
+GET /orders/:user_id - Read specific users order
+
+POST /orders - Create a new order
+
+PUT /orders/:order_id - Edit a specific order
+
+DELETE /orders/:order_id - Delete a specific order
+
+//Login
+
+GET /login - Browse login page
+
+POST /login - Login a user
+
+//Home
+
+GET / - Home page
+
+
+
+
+
