@@ -1,4 +1,5 @@
 const db = require('../db/connection');
+const { checkoutItems } = require('../db/queries/users');
 
 
 exports.getDishes = (req, res) => {
@@ -77,9 +78,44 @@ exports.deletecart = (req, res) => {
       });
   };
 
-exports.getCheckout = (req, res) => {}
+exports.getCheckout = (req, res) => {
 
-exports.getCheckoutSuccess = (req, res) => {}
+  let order_id = req.params.id;
+  let totals = { subtotal: 0, tax: 0, total: 0 };
+
+
+  checkoutItems(order_id, (err, checkoutStuff) => {
+    if (err) {
+      return res.render('error', { err });
+    }
+    let subtotal = 0;
+    for (let i = 0; i < checkoutStuff.length; i++) {
+      subtotal += (checkoutStuff[i].price * checkoutStuff[i].quantity);
+    }
+    totals.subtotal = (Math.round(subtotal * 100) / 100).toFixed(2);
+    totals.tax = (Math.round(subtotal * 0.12 * 100) / 100).toFixed(2);
+    totals.total = (Math.round((subtotal + subtotal * 0.12) * 100) / 100).toFixed(2);
+
+    res.render('checkoutSucces', { checkoutStuff, order_id, totals });
+  });
+}
+
+exports.getCheckoutSuccess = (req, res) => {
+  const id = req.session.id
+    const { order_id, totals } = req.body;
+    // Retrieve the order and payment details based on the order ID
+    db.query(`SELECT *
+    FROM orders
+    LEFT JOIN payments
+    ON orders.id = payments.order_id
+    WHERE orders.id = $1`, [id])
+    .then(data => {
+      const payments = data.rows;
+      res.json({ payments });
+    })
+
+    res.render('payment', { order_id, totals, order, payment });
+}
 
 exports.getCheckoutCancel = (req, res) => {}
 
@@ -96,12 +132,12 @@ exports.getOrders = (req, res) => {
 }
 
 exports.getOrder = (req, res) => {
-
+  const id = req.session.id
   db.query(
     `SELECT *, to_char((select created_at)::timestamp, 'HH:MI:SSPM') AS start_time
       FROM orders WHERE customer_id = $1 AND finished_at IS NULL
       ORDER BY id DESC;`,
-    [req.session.customer_id]
+    [id]
   )
     .then((data) => {
       // convert dishlist array to readable
