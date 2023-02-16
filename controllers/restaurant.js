@@ -1,5 +1,7 @@
 
 const db = require('../db/connection');
+const { checkoutItems, created_at, finished_at } = require('../db/queries/users');
+const { timeConfirmed, orderCompleted } = require('../routes/twilo');
 
 exports.getRestLogin = (req, res) => {
 
@@ -59,6 +61,38 @@ exports.getAddDish = (req, res) => {
           .json({ error: err.message });
         });
 }
+
+exports.getRestConfirm('/restaurant_confirm/:id', (req, res) => {
+  let order_id = req.params.id;
+  let totals = { subtotal: 0, tax: 0, total: 0 };
+  checkoutItems(order_id, (err, checkoutStuff) => {
+    if (err) {
+      return res.render('error', { err });
+    }
+    let subtotal = 0;
+    for (let i = 0; i < checkoutStuff.length; i++) {
+      subtotal += (checkoutStuff[i].price * checkoutStuff[i].quantity);
+    }
+    totals.subtotal = (Math.round(subtotal * 100) / 100).toFixed(2);
+    totals.tax = (Math.round(subtotal * 0.12 * 100) / 100).toFixed(2);
+    totals.total = (Math.round((subtotal + subtotal * 0.12) * 100) / 100).toFixed(2);
+
+    res.render('restaurant', { checkoutStuff, order_id, totals});
+  });
+});
+
+exports.postRestConfirm = ('/confirm_order',(req,res) => {
+  timeConfirmed(req.body.time_est);
+  created_at(req.body.order_id, true, req.body.time_est);
+  res.send(req.body.time_est)
+});
+
+exports.postRestCompleted =('/completed', (req, res) => {
+  finished_at(req.body.order_id, true);
+  orderCompleted();
+  res.send(req.body.order_id)
+});
+
 
 exports.getEditDish = (req, res) => {
   const id = parseInt(req.params.id);
