@@ -7,8 +7,11 @@ nav {
   margin: 0em;
 }
 
-.login_signup {
+.login_signup a {
   color: white;
+}
+
+.login_signup {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
