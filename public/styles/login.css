@@ -12,4 +12,10 @@ body {
   margin: auto;
   margin-top: 10em;
 }
+i {
+  margin-right: 1em;
+}
 
+a {
+  color: black;
+}
