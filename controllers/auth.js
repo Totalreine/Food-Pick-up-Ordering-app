@@ -92,7 +92,7 @@ exports.getLogin = (req, res) => {
           const user = generateEmptyUser();
           const { statusCode } = 200;
           const errorMessage = "";
-          const params = { user, statusCode, error:errorMessage };
+          const params = { user, statusCode, errorMessage };
           res.render("login", params);
         }
       
@@ -130,25 +130,25 @@ exports.postLogin = (req, res) => {
               if (userInfo.admin) {
                 res.redirect(`/dishes/${userInfo.id}/orders`);
               } else {
-                res.render("menu");
+                res.redirect("/");
               }
             } else {
               res.status(403);
               const user = generateEmptyUser();
               const errorMessage = "Password and email doesn't match";
-              const params = { error: errorMessage };
+              const params = { user, errorMessage };
   
               res.render("login", params);
-            }
-          })
-          .catch(err => {
-            res.status(500).json({ error: err.message });
-          });
-      } 
-
-};
-
-exports.postLogout = (req, res) => {
+          }
+        })
+        .catch(err => {
+          res.status(500).json({ error: err.message });
+        });
+    } 
+  
+  };
+  
+ exports.postLogout = (req, res) => {
     req.session = null;
         res.redirect('/');
 
