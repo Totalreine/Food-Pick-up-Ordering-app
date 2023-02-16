@@ -1,0 +1,21 @@
+body {
+  background: beige;
+}
+
+.main-container {
+  background-color: white;
+  width: 50%;
+  border-radius: 10px;
+  padding-top: 5em;
+  padding-bottom: 5em;
+  text-align: center;
+  margin: auto;
+  margin-top: 10em;
+}
+i {
+  margin-right: 1em;
+}
+
+a {
+  color: black;
+}

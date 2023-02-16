@@ -128,6 +128,69 @@ $(document).ready(function() {
   });
 });
 
+// get restuarant confirm
+
+var form = $('#my-form');
+form.submit(function(event) {
+  event.preventDefault(); 
+  var formData = form.serialize();
+  $.ajax({
+    type: 'POST',
+    url: '/restaurant_confirm/' + order_id,
+    data: formData,
+    success: function(response) {
+      $('#my-container').html(response);
+    },
+    error: function(xhr, status, error) {
+      // handle errors
+      console.log('Error:', error);
+    }
+  });
+});
+
+// confirm the order
+
+$(document).ready(function() {
+  $("#confirmOrderForm").submit(function(e) {
+    e.preventDefault(); // Prevent form from submitting normally
+    var form_data = $(this).serialize(); // Serialize form data
+
+    $.ajax({
+      type: "POST",
+      url: "/confirm_order",
+      data: form_data,
+      success: function(response) {
+        console.log(response); 
+      },
+      error: function(xhr, status, error) {
+        console.error(error); 
+      }
+    });
+  });
+});
+
+// completed order 
+
+$(document).ready(function() {
+  $("#completedForm").submit(function(e) {
+    e.preventDefault(); // Prevent form from submitting normally
+    var form_data = $(this).serialize(); // Serialize form data
+
+    $.ajax({
+      type: "POST",
+      url: "/completed",
+      data: form_data,
+      success: function(response) {
+        console.log(response);
+      },
+      error: function(xhr, status, error) {
+        console.error(error); 
+        
+      }
+    });
+  });
+});
+
 $(document).ready(function() {
 $('#edit-dish-form').submit(function(event) {
   event.preventDefault();  // prevent default form submission behavior
@@ -158,11 +221,9 @@ $('#delete-button').click(function() {
     url: `/dishes/${id}`,
     type: 'DELETE',
     success: function(result) {
-      // Handle successful response from server
       console.log(result);
     },
     error: function(xhr, status, error) {
-      // Handle error response from server
       console.log(xhr.responseText);
     }
   });
