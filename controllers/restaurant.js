@@ -62,7 +62,7 @@ exports.getAddDish = (req, res) => {
         });
 }
 
-exports.getRestConfirm('/restaurant_confirm/:id', (req, res) => {
+exports.getRestConfirm = ('/restaurant_confirm/:id', (req, res) => {
   let order_id = req.params.id;
   let totals = { subtotal: 0, tax: 0, total: 0 };
   checkoutItems(order_id, (err, checkoutStuff) => {
