@@ -12,6 +12,13 @@ router.get('/dishes/:dishId', restaurantController.getDish)
 
 router.get('/add-dish', restaurantController.getAddDish)
 
+router.get('/restaurant_confirm/:id', restaurantController.getRestConfirm)
+
+router.post('/confirm_order', restaurantController.postRestConfirm)
+
+router.post('/completed', restaurantController.postRestCompleted)
+
+
 router.get('/edit-dish/:dishId', restaurantController.getEditDish)
 
 router.post('/add-dish', restaurantController.postAddDish)
