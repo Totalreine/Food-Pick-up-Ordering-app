@@ -18,6 +18,15 @@ nav {
   margin-right: 1em;
 }
 
+/* .login_signup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-right: 1em;
+} */
+
+
 .login:hover {
   text-decoration: underline;
 }
