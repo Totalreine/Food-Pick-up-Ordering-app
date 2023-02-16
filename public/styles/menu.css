@@ -1,0 +1,56 @@
+body {
+  background: beige;
+}
+
+.main-container {
+  background-color: white;
+  width: 90%;
+  margin: 2em;
+  border-radius: 10px;
+  padding-bottom: 0.5em;
+}
+
+.menu-section {
+  margin-top: 2em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.FlavMonth, .Classic, .Vegan, .GF {
+  padding: 2em;
+}
+
+h3 {
+  margin: 15px;
+  margin-bottom: 1.5em;
+}
+
+img {
+  height: 10em;
+  width: 10em;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+#FlavMonth, #Classic, #Vegan, #GF {
+  margin: 15px;
+  height: auto;
+  border-radius: 10px;
+  width: 25%;
+  text-align: center;
+  display: flex;
+}
+
+.CherryLove, .Chocolate, .Coconut, .Coffee {
+  margin-right: 5em;
+}

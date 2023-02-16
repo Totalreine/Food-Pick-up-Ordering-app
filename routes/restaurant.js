@@ -4,6 +4,8 @@ const db = require('../db/connection');
 
 const restaurantController = require('../controllers/restaurant')
 
+router.get('/restaurant', restaurantController.getRestLogin)
+
 router.get('/dishes', restaurantController.getDishes)
 
 router.get('/dishes/:dishId', restaurantController.getDish)
