@@ -7,10 +7,9 @@ nav {
   margin: 0em;
 }
 
-/* a {
+.login_signup a {
   color: white;
-
-} */
+}
 
 .login_signup {
   display: flex;
