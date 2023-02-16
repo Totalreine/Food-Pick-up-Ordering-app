@@ -13,24 +13,29 @@
 </head>
 <body>
   <main class="main-container">
-    <h2>Food pickup app</h2>
-    <h4>Login:</h4>
-    <br>
+    <h2>To pick up food for The Cupcake Shop</h2>
+    <h4>Please Login</h4>
     <br>
     <form action="/login" method="post" id="login">
-        <label for="email">Email:</label>
-        <input type="email" name="email">
+      <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" name="email" placeholder="Email" required="required">
+        </div>
         <br>
         <br>
-        <label for="password">Password:</label>
-        <input type="password" name="password">
-        <button type="submit" form="login" value="Submit" style="position: relative;">Submit</button>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <i class="fa fa-lock"></i>
+          <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+        </div>
+        <br>
+        <br>
+        <div class="form-group">
+          <input type="submit" class="btn btn-primary btn-block btn-lg" value="Login">
+        </div>
     </form>
     <br>
-    <p>If you do not have an account, please <a href="/register">Register</a></p>
+    <p>If you do not have an account, please <a href="/signup">Sign Up</a></p>
   </main>
 </body>
 </html>
-
-
-
