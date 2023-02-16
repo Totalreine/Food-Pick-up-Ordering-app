@@ -97,8 +97,8 @@ exports.postRestCompleted =('/completed', (req, res) => {
 exports.getEditDish = (req, res) => {
   const id = parseInt(req.params.id);
     db.query(`UPDATE dishes
-    SET name = $1, description = $2, food_category = $3, vegan = $4, gluten_free = $, picture_url = $6, 
-    price = $7, rating = $8, 
+    SET name = $1, description = $2, food_category = $3, vegan = $4, gluten_free = $, picture_url = $6,
+    price = $7, rating = $8,
     WHERE id = $9;`,[id])
       .then(data => {
         const customers = data.rows;
@@ -166,6 +166,5 @@ exports.deleteDish = (req, res) => {
       });
   };
 
-  
-  
-  
+
+
