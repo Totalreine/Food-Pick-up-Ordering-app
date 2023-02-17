@@ -9,7 +9,7 @@ exports.getDishes = (req, res) => {
   db.query(`SELECT * FROM dishes`)
   .then(data => {
     const dishes = data.rows;
-    res.json({ dishes });
+    res.render('dishes', { dishes });
     res.send(dishes)
   })
   .catch(err => {
