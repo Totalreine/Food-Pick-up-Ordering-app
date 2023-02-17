@@ -23,9 +23,9 @@
       <tbody id="order-list">
         <% placedOrders.forEach(function(order) { %>
           <tr>
-            <td><%= order.order_id %></td>
-            <td><%= order.user_id %></td>
-            <td><%= order.order_total_price %></td>
+            <td><%= Orders.order_id %></td>
+            <td><%= orders.user_id %></td>
+            <td><%= orders.order_total_price %></td>
           </tr>
         <% }); %>
       </tbody>
@@ -37,4 +37,5 @@
       <input type="text" name="order_total_price" id="total-price" />
       <button type="submit">Submit</button>
     </form>
-      
+    </body>
+    </html>

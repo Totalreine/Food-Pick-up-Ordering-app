@@ -17,30 +17,29 @@ $(document).ready(function() {
       },
       error: function(error) {
         console.error(error);
-      }
+      }});
     });
   });
-});
-
-$.ajax({
-  type: "GET",
-  url: "/orders",
-  success: function(response) {
-    var orders = response.placedOrders;
-    var orderList = $("#order-list");
-    orderList.empty();
-    orders.forEach(function(order) {
-      var row = $("<tr>");
-      row.append($("<td>").text(order.order_id));
-      row.append($("<td>").text(order.order_total_price));
-      orderList.append(row);
-    });
-  },
-  error: function(error) {
-    console.error(error);
-  }
-});
-
-$(document).ready(function() {
-fetchOrders();
-});
+  
+  $.ajax({
+    type: "GET",
+    url: "/orders",
+    success: function(response) {
+      var orders = response.placedOrders;
+      var orderList = $("#order-list");
+      orderList.empty();
+      orders.forEach(function(order) {
+        var row = $("<tr>");
+        row.append($("<td>").text(order.order_id));
+        row.append($("<td>").text(order.order_total_price));
+        orderList.append(row);
+      });
+    },
+    error: function(error) {
+      console.error(error);
+    }
+  });
+  
+  $(document).ready(function() {
+  fetchOrders();
+  });

@@ -2,17 +2,47 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db/connection");
 // const orderController =require('../controllers/orders')
+const getOrdersQuery = require("../lib/helpers")
 
-router.get("/order/:id", (req, res) => {
-  const id = parseInt(req.params.id);
-  db.query(`SELECT * FROM order_details WHERE id = $1`, [id])
-    .then((data) => {
-      const order = data.rows;
-      res.json({ order });
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err.message });
-    });
+router.get("/order", (req, res) => {
+  const userId = req.session.userId || "";
+
+  if (userId) {
+    getUserInfo(userId, db)
+      .then(userInfo => {
+        if (!userInfo.admin) {
+          const getOrdersQuery = {
+            text: `SELECT * FROM order_details WHERE user_id = $1`,
+            values: [userId]
+          };
+
+          db.query(getOrdersQuery)
+            .then(data => {
+              const currentOrder = data.rows;
+
+              const structuredOrders = refactorOrder(currentOrder);
+
+              const user = userInfo;
+              const params = { user, structuredOrders };
+
+              console.log(structuredOrders);
+              res.render("orders", params);
+            })
+            .catch(err => {
+              res.status(500).json({ error: err.message });
+            });
+        } else {
+          const user = userInfo;
+          const params = { user };
+          res.render("404", params);
+        }
+      })
+      .catch(err => {
+        res.status(500).json({ error: err.message });
+      });
+  } else {
+    res.redirect("/");
+  }
 });
 
  router.post('/order', (req, res) => {
@@ -31,6 +61,6 @@ router.get("/order/:id", (req, res) => {
  })
 
 router.get("/order", (req, res) => {
-  res.render('order')
+  res.render('order', {placedOrders: []});
 })
 module.exports = router;

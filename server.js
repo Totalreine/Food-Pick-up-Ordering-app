@@ -39,14 +39,15 @@ app.use(cookieSession({
 const userRoutes = require('./routes/user');
 const restaurantRoutes = require('./routes/restaurant');
 const authRoutes = require('./routes/auth');
-// const orderRouts = require('./routes/orders')
+const orderRouts = require('./routes/orders')
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 
-app.use(userRoutes);
-app.use(restaurantRoutes);
-app.use(authRoutes);
+app.use('/user',userRoutes);
+app.use('/restuarant',restaurantRoutes);
+app.use('/auth',authRoutes);
+app.use('/order', orderRouts);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
