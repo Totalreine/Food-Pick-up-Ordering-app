@@ -47,6 +47,10 @@ const authRoutes = require('./routes/auth');
 app.use(userRoutes);
 app.use(restaurantRoutes);
 app.use(authRoutes);
+<<<<<<< Updated upstream
+=======
+// app.use('/order', orderRouts);
+>>>>>>> Stashed changes
 // Note: mount other resources here, using the same pattern above
 
 // Home page
