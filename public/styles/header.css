@@ -43,6 +43,7 @@ header {
 
 .main-nav li a:hover,
 .main-nav li a:active {
+  color: white;
   padding-bottom: 5px;
   border-bottom: 2px solid white;
 }
