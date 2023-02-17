@@ -18,9 +18,9 @@ router.get('/carts/:delete', userController.deletecart)
 
 router.get('/checkout', userController.getCheckout)
 
-router.get('/checkout/success', userController.getCheckoutSuccess)
+// router.get('/checkout/success', userController.getCheckoutSuccess)
 
-router.get('/checkout/cancel', userController.getCheckoutCancel)
+// router.get('/checkout/cancel', userController.getCheckoutCancel)
 
 router.get('/orders', userController.getOrders)
 

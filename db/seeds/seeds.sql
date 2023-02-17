@@ -27,4 +27,3 @@ INSERT INTO dishes (name, description, price, food_category, vegan, gluten_free,
 ( 'Coffee', 'Coffee cake topped with mocha buttercream frosting and a chocolate covered coffee bean', '6.99', 'gluten_free', 'false', 'true', '/images/CoffeeCupcake.jpeg', '4.5'),
 ( 'Lemon', 'Lemon cupcake with cream cheese frosting and lemon zest on top', '6.99', 'gluten_free', 'false', 'true', '/images/LemonCupcake.jpeg', '5');
 
-  

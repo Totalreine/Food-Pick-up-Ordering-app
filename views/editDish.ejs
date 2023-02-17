@@ -56,6 +56,12 @@
             <button type="submit" form="signup" value="Submit" style="position: relative;">edit</button>
         </form>
         <br>
+        <form action="/delete-dish" method="post">
+            <div>
+            <input type="text" name="id"  value="<%= dish.id %>">
+            </div> 
+            <button type="submit" form="signup" value="Submit" style="position: relative;">delete</button>
+        </form>
         
         <br>
         <p>If you're already registered, go to <a href="/login">Login</a></p>

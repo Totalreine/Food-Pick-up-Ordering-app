@@ -31,12 +31,12 @@ CREATE TABLE dishes (
   restaurant_id INTEGER REFERENCES restaurants(id) ON DELETE CASCADE,
   name VARCHAR(255) NOT NULL,
   description TEXT,
-  price INTEGER NOT NULL,
+  price DECIMAL NOT NULL,
   food_category VARCHAR(255) NOT NULL,
   vegan BOOLEAN NOT NULL DEFAULT FALSE,
   gluten_free BOOLEAN NOT NULL DEFAULT FALSE,
   picture_url VARCHAR(255) NOT NULL,
-  rating SMALLINT NOT NULL DEFAULT 0
+  rating DECIMAL NOT NULL
 );
 
 DROP TABLE IF EXISTS orders CASCADE;

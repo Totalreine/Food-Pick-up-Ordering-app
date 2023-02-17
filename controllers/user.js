@@ -1,5 +1,6 @@
 const db = require('../db/connection');
-const { checkoutItems } = require('../db/queries/users');
+const { timeConfirmed, orderCompleted } = require('../routes/twilo');
+
 
 
 exports.getDishes = (req, res) => {
@@ -79,45 +80,47 @@ exports.deletecart = (req, res) => {
   };
 
 exports.getCheckout = (req, res) => {
+  const orderId = req.params.id;
+  const totals = { subtotal: 0, tax: 0, total: 0 };
 
-  let order_id = req.params.id;
-  let totals = { subtotal: 0, tax: 0, total: 0 };
-
-
-  checkoutItems(order_id, (err, checkoutStuff) => {
-    if (err) {
-      return res.render('error', { err });
-    }
-    let subtotal = 0;
-    for (let i = 0; i < checkoutStuff.length; i++) {
-      subtotal += (checkoutStuff[i].price * checkoutStuff[i].quantity);
-    }
-    totals.subtotal = (Math.round(subtotal * 100) / 100).toFixed(2);
-    totals.tax = (Math.round(subtotal * 0.12 * 100) / 100).toFixed(2);
-    totals.total = (Math.round((subtotal + subtotal * 0.12) * 100) / 100).toFixed(2);
-
-    res.render('checkoutSucces', { checkoutStuff, order_id, totals });
-  });
-}
-
-exports.getCheckoutSuccess = (req, res) => {
-  const id = req.session.id
-    const { order_id, totals } = req.body;
-    // Retrieve the order and payment details based on the order ID
-    db.query(`SELECT *
-    FROM orders
-    LEFT JOIN payments
-    ON orders.id = payments.order_id
-    WHERE orders.id = $1`, [id])
+  db.query(`SELECT * from order_details
+    JOIN orders ON order_id = orders.id
+    JOIN dishs on dish.id = dish_id
+    WHERE orders.id = ${orderId};`)
     .then(data => {
-      const payments = data.rows;
-      res.json({ payments });
+      const checkoutStuff = data.rows;
+      let subtotal = 0;
+      for (let i = 0; i < checkoutStuff.length; i++) {
+        subtotal += (checkoutStuff[i].price * checkoutStuff[i].quantity);
+      }
+      totals.subtotal = (Math.round(subtotal * 100) / 100).toFixed(2);
+      totals.tax = (Math.round(subtotal * 0.12 * 100) / 100).toFixed(2);
+      totals.total = (Math.round((subtotal + subtotal * 0.12) * 100) / 100).toFixed(2);
+      res.render('checkoutSucces', { checkoutStuff, orderId, totals });
     })
+    .catch(err => {
+      res.render('error', { err });
+    });
+};
 
-    res.render('payment', { order_id, totals, order, payment });
-}
+// exports.getCheckoutSuccess = (req, res) => {
+//   const id = req.session.id
+//     const { order_id, totals } = req.body;
+//     // Retrieve the order and payment details based on the order ID
+//     db.query(`SELECT *
+//     FROM orders
+//     LEFT JOIN payments
+//     ON orders.id = payments.order_id
+//     WHERE orders.id = $1`, [id])
+//     .then(data => {
+//       const payments = data.rows;
+//       res.json({ payments });
+//     })
 
-exports.getCheckoutCancel = (req, res) => {}
+//     res.render('payment', { order_id, totals, order, payment });
+// }
+
+// exports.getCheckoutCancel = (req, res) => {}
 
 exports.getOrders = (req, res) => {
 
@@ -130,6 +133,8 @@ exports.getOrders = (req, res) => {
         res.status(500).json({ error: err.message });
       });
 }
+
+
 
 exports.getOrder = (req, res) => {
   const id = req.session.id
@@ -197,7 +202,7 @@ exports.getOrder = (req, res) => {
         }
         orderList[order.id] = dishList;
       }
-      const user = req.session.customer_id;
+      const user = req.session.id;
       const templateVars = { user, orders, orderList };
       res.render("user_orders", templateVars);
     })
@@ -224,31 +229,59 @@ exports.postCart = (req, res) => {
 }
 
 exports.postOrders = (req, res) => {
-  const customer_id = req.session.customer_id || '';
-    const processedOrder = req.body.cart;
-    if (customer_id && processedOrder) {
-      const cart = JSON.parse(processedOrder);
-      let totalCost = 0;
+  const timeConfirmed = function (time_est) {
+    twilioClient.messages
+      .create({
+        body: `Your order has been confirmed. It will be ready in approximately ${time_est} minutes.`,
+        from: TWILIO_NUM,
+        to: YOUR_NUM,
+      })
+      .then((message) => console.log(message.sid));
+  };
 
-      for (let item of cart) {
-        let numItem = item.price * item.qty;
-        totalCost += numItem;
-      }
-    const { customer_id, order_total_price } = req.body;
+  const orderCompleted = function () {
+    twilioClient.messages
+      .create({
+        body: `Your order is completed! 😊`,
+        from: TWILIO_NUM,
+        to: YOUR_NUM,
+      })
+      .then((message) => console.log(message.sid));
+  };
+
+  timeConfirmed(req.body.time_est);
+  const { order_id, cart, customer_id, order_total_price } = req.body;
+  created_at(order_id, true, req.body.time_est);
+
+  if (cart && customer_id) {
+    const cartArr = JSON.parse(cart);
+    let totalCost = 0;
+
+    for (let item of cartArr) {
+      let numItem = item.price * item.qty;
+      totalCost += numItem;
+    }
 
     // add a new order to the orders table
     db.query(
-      `INSERT INTO orders (customer_id, order_total_price) VALUES ($1, $2);`,
-      [customer_id, order_total_price]
+      `INSERT INTO orders (customer_id, order_total_price) VALUES ($1, $2) RETURNING *;`,
+      [customer_id, totalCost]
     )
-      .then(() => {
-        res.json({ success: true });
+      .then((data) => {
+        const order = data.rows[0];
+        finished_at(order.order_id, true);
+        orderCompleted();
+        res.json({ order });
       })
       .catch((err) => {
+        console.error(err);
         res.status(500).json({ error: err.message });
       });
-  };
-}
+  } else {
+    res.status(400).json({ error: 'Invalid request data' });
+  }
+};
+
 
 
 
