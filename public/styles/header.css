@@ -1,36 +1,55 @@
-nav {
-  background-image: url(/images/cupcake_header.webp);
-  opacity: 90%;
-  height: 250px;
-  width: 100%;
-  object-fit: cover;
-  margin: 0em;
+header {
+  background-color: whitesmoke;
+  background-image: linear-gradient(to bottom, transparent, whitesmoke), url("/images/cupcake_header.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  margin-bottom: 80px;
 }
 
-.login_signup a {
+.shop-name {
+  color: white;
+  font-family: 'Satisfy';
+  position: absolute;
+  font-size: 85px;
+  top: 3.5em;
+  margin-left: .5em;
+  text-shadow:
+    -2px 0px 0px rgb(252, 138, 193),
+    1px 0px 0px rgb(252, 138, 193),
+    0px -2px 0px rgb(252, 138, 193),
+    0px 1px 0px rgb(252, 138, 193);
+}
+
+.main-nav li {
+  font-family: "Lato 400", sans-serif;
+  font-weight: 500;
+  color: white;
+  font-size: 20px;
+  display: inline-block;
+  width: 7em;
+  margin-top: 1.5em;
+  margin-bottom: 20px;
+}
+
+.main-nav {
+  float: right;
+}
+
+.main-nav a {
   color: white;
 }
 
-.login_signup {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  margin-right: 1em;
+.main-nav li a:hover,
+.main-nav li a:active {
+  padding-bottom: 5px;
+  border-bottom: 2px solid white;
 }
 
-/* .login_signup {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-  margin-right: 1em;
-} */
-
-
-.login:hover {
-  text-decoration: underline;
-}
-
-.signup:hover {
-  text-decoration: underline;
+.logo {
+  width: 10em;
+  height: 10em;
+  margin-left: 10px;
+  margin-top: 10px
 }

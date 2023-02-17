@@ -1,0 +1,74 @@
+.main {
+  background: whitesmoke;
+  font-family: "Lato", sans-serif;
+}
+
+.feature {
+  font-family: "Lato";
+  margin-top: 80px;
+  text-align: center;
+}
+
+.message {
+  font-style: italic;
+  text-align: center;
+  font-size: larger;
+  margin-bottom: 50px;
+  color: black;
+}
+
+.feature_img {
+  object-fit: cover;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.btn-full:link {
+  background-color: rgb(255, 207, 215);
+  border: 2px solid rgb(255, 207, 215);
+  color: white;
+  margin: auto;
+  margin-top: 2em;
+  display: block;
+  width: 20%;
+}
+
+.content_img {
+  width: 15%;
+  margin: 1em;
+  height: 300px;
+}
+
+.content_img .menu-img {
+  width: 100%;
+  height: 270px;
+}
+
+.content_img div {
+  bottom: 0;
+  right: 0;
+  background: black;
+  border-radius: 10px;
+  color: white;
+  margin-top: .5em;
+  margin-bottom: 15px;
+  font-family: "Lato", sans-serif;
+  text-align: center;
+}
+
+.description {
+  width: 30%;
+  text-align: center;
+  margin-left: 33em;
+}
+
+#about-us, #location, #menu {
+  margin-top: 5em;
+  text-align: center;
+}
+
+.footer {
+  color: darkblue;
+}

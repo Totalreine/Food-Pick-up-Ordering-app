@@ -1,49 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <title>Food-pickup app</title>
-
-  <meta charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
-
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
-  <link rel="stylesheet" href="/vendor/border-box.css" />
-  <link rel="stylesheet" href="/styles/main.css" />
-  <link rel="stylesheet" href="/styles/layout.css" />
-
-  <script src="/vendor/jquery-3.0.0.js"></script>
-  <script defer src="/scripts/app.js"></script>
-</head>
-
-<body>
-  <h1>Welcome to the Food-pickup App</h1>
-  <br>
-  <br>
-  <div>
-    <h3>If you're a restaurant owner and want to register<br>
-        Click here:</h3>
-    <a href="signup.ejs">
-      <button id="rest-btn">Signup</button>
-    </a>
-  </div>
-  <div>
-      <h3>If you're a user and want to register<br>
-          Click here:</h3>
-      <a href="./signup.ejs">
-        <button id="user-btn">Signup</button>
-      </a>
-  </div>
-  <p>For checking the menu <br>
-      <a href="./menu.ejs">
-        <button>Menu</button>
-      </a>
-
-</body>
-
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,96 +6,91 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
-  <link rel="stylesheet" href="/vendor/border-box.css" />
-  <link rel="stylesheet" href="/styles/menu.css">
+  <title> The Cupcake Shop </title>
+
+  <!-- Link to css -->
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/main-page.css" type="text/css" />
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
   <script defer src="/scripts/cart.js"></script>
   <script defer src="/scripts/users.js"></script>
+  <script defer src="/scripts/restaurent.js"></script>
+  <script defer src="/scripts/userOrderAndCart.js"></script>
 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
-  <title>The Cupcake Shop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
+  <!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
 </head>
 
 <body>
-  <%- include('partials/_header') %>
-    <main class="main-container">
-      <section>
-        <div class="menu-section">
-          <ul>
-            <li class="menu-categories">
-              <hr>
-              <a class="FlavMonth" href="#Flavour of the Month">Flavour of the Month</a>
-              <a class="Classic" href="#classics">Classic</a>
-              <a class="Vegan" href="#vegan">Vegan</a>
-              <a class="GF" href="#gf">Gluten Free</a>
-              <hr>
-          </ul>
+
+  <section class="main">
+
+    <header>
+      <%-include('partials/_header') %>
+    </header>
+
+    <section id="menu">
+      <h1 class="feature"> Feature Cupcakes <br></h1>
+      <p class="message"> the month of love </p>
+
+      <div class="feature_img">
+        <div class="content_img">
+          <img class="menu-img second" src='/images/CherryLoveCupcake.jpeg'>
+            <div class="text1"> Cherry Love Cupcake </div>
         </div>
-      </section>
+        <div class="content_img">
+          <img class="menu-img second" src='/images/SweetHeartCupcake.jpeg'>
+          <div class="text"> Sweet Heart Cupcake </div>
+        </div>
       </div>
+      </div>
+    </section>
+      <a class="btn-full btn" href="/menu">view menu for more cupcakes</a>
 
-      <h3 id="flavour of the month">Flavour of the Month</h3>
-      <section id="FlavMonth">
-        <div class="Cupcake">
-          <img src="/images/CherryLoveCupcake.jpeg" alt="Cherry Love">
-          <h4>Cherry Love</h4>
-          <p>Chocolate cake filled with cherry jam and topped with pink buttercream frosting and a cherry</p>
-        </div>
+    <section id="about-us">
+      <h1 class="subtitle"> About Us <br></h1>
+      <p class="description"> Welcome to our cozy cupcake shop, where we believe in spreading joy one sweet treat at a time! Our bakery is the perfect place to satisfy your sweet tooth with our delectable cupcakes, baked fresh daily with high-quality ingredients. Whether you're looking for a classic flavor or a unique and creative combination, we've got you covered. Our team of talented bakers takes pride in creating delicious and beautifully decorated cupcakes that are sure to delight your taste buds and brighten your day. So come on in, grab a cupcake or two, and let us bring a little bit of sweetness into your life. </p>
+    </section>
 
-        <div class="Cupcake">
-          <img src="/images/SweetHeartCupcake.jpeg" alt="Sweet Heart">
-          <h4>Sweet Heart</h4>
-          <p>Vanilla cake with pink vanilla buttercream frosting topped with sprinkles</p>
-        </div>
-      </section>
+    <section id="location">
+      <h1 class="location"> Where we are located <br></h1>
 
-      <h3 id="classics">Classic </h3>
-      <section id="Classic">
-        <div class="Cupcake">
-          <img src="/images/ChocolateCupcake.jpeg" alt="Chocolate">
-          <h4>Chocolate</h4>
-          <p>Chocolate cake with chocolate buttercream frosting</p>
-        </div>
-        <div class="Cupcake">
-          <img src="/images/RedVelvetCupcake.jpeg" alt="Red Velvet">
-          <h4>Red Velvet</h4>
-          <p>Red velvet cake topped with cream cheese frosting</p>
-        </div>
-      </section>
+        <div class="map"><img class="locationImg" src=""><div> ADD MAP PHOTO
 
-      <h3 id="vegan">Vegan </h3>
-      <section id="Vegan">
-        <div class="Cupcake">
-          <img src="/images/CoconutCupcake.jpeg" alt="Coconut">
-          <h4>Coconut</h4>
-          <p>Coconut cake with vegan cream cheese frosting topped with coconut shavings</p>
+        <div class="contact">
+          <p class="info"> ADDRESS <br> PHONE <br> HOURS </p>
+          <a class="btn btn-full order" href="/menu">Order now</a>
+          <br>
         </div>
-        <div class="Cupcake">
-          <img src="/images/ChocamelCupcake.jpeg" alt="Chocamel">
-          <h4>Chocamel</h4>
-          <p>Chocolate cake filled with a caramel centre and topped with a vegan caramel buttercream and caramel sauce
-          </p>
-        </div>
-      </section>
+    </section>
 
-      <h3 id="gf">Gluten Free </h3>
-      <section id="GF">
-        <div class="Cupcake">
-          <img src="/images/CoffeeCupcake.jpeg" alt="Coffee">
-          <h4>Coffee</h4>
-          <p>Coffee cake topped with mocha buttercream frosting and a chocolate covered coffee bean</p>
-        </div>
-        <div class="Cupcake">
-          <img src="/images/LemonCupcake.jpeg" alt="Lemon">
-          <h4>Lemon</h4>
-          <p>Lemon cupcake with cream cheese frosting and lemon zest on top </p>
-        </div>
-      </section>
-    </main>
+    <!-- Footer -->
+    <footer class="footer">
+
+    </footer>
+
+</section>
+
 </body>
 
 </html>
