@@ -1,39 +1,6 @@
-body {
-  background: beige;
-}
-
-.main-container {
-  background-color: white;
-  width: 90%;
-  margin: auto;
-  border-radius: 10px;
-  padding-bottom: 0.5em;
-}
-
-.menu-section {
-  margin-top: 2em;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-li {
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
-  color: black;
-}
-
-.FlavMonth, .Classic, .Vegan, .GF {
-  padding: 2em;
-}
-
-h3 {
-  margin: 15px;
-  margin-top: 5em;
-  margin-bottom: 1.5em;
+p, h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lato', sans-serif;
+  text-align: center;
 }
 
 img {
@@ -43,7 +10,147 @@ img {
   object-fit: cover;
 }
 
-#FlavMonth, #Classic, #Vegan, #GF {
+li {
+  list-style: none;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  background-image: url("/images/cupcake-menu.jpeg");
+  background-size: cover;
+  background-position: center;
+  height: 210vh;
+  position: relative;
+}
+
+.main-menu a {
+  float: right;
+  margin: 2.5em;
+  color: grey;
+  font-weight: 400;
+  font-size: 20px;
+  font-family: 'Lato', sans-serif;
+}
+
+.main-menu a:hover {
+  color: white;
+}
+
+table {
+  background-color: white;
+  height: 50%;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.full-menu {
+  width: 60%;
+}
+
+h4.price {
+  margin-left: 2em;
+  position: absolute;
+}
+
+.delete-dish-btn {
+  margin-left: 0.25em;
+  font-family: 'Lato', sans-serif;
+  background-color: white;
+  border: none;
+}
+
+.delete-dish-btn:hover {
+  color: red;
+}
+
+.checkout-btn {
+  color: red;
+}
+
+.menu-container {
+    background-color: beige;
+    width: 50%;
+    height: 50%;
+    margin: auto;
+    border-radius: 10px;
+    padding-bottom: 0.5em;
+}
+
+.menu-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 50%;
+  margin: auto;
+}
+
+.menu-items ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.menu-items li {
+  width: 50%;
+  display: inline-block;
+  padding: 10px;
+  flex-basis: 48%;
+  margin-bottom: 1em;
+}
+
+
+.cart {
+  background-color: white;
+  width: 20%;
+  padding: 1.5em;
+  margin-left: 55em;
+  margin-top: 15em;
+  position: absolute;
+}
+
+
+ /* OLD CSS */
+
+
+/* .main-container {
+  background-color: white;
+  width: 50%;
+  margin: auto;
+  border-radius: 10px;
+  padding-bottom: 0.5em;
+} */
+
+/* .menu-section {
+  margin-top: 2em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+} */
+
+/* a {
+  text-decoration: none;
+  color: black;
+} */
+
+/* .FlavMonth, .Classic, .Vegan, .GF {
+  padding: 2em;
+} */
+
+/* h3 {
+  margin: 15px;
+  margin-top: 5em;
+  margin-bottom: 1.5em;
+} */
+
+
+/* #FlavMonth, #Classic, #Vegan, #GF {
   margin: 15px;
   height: auto;
   border-radius: 10px;
@@ -51,9 +158,9 @@ img {
   text-align: center;
   display: flex;
   justify-content: space-between;
-}
+} */
 
-#FlavMonth div:first-child,
+/* #FlavMonth div:first-child,
 #Classic div:first-child,
 #Vegan div:first-child,
 #GF div:first-child {
@@ -65,13 +172,13 @@ img {
 #Vegan div + div,
 #GF div + div {
   margin-left: 20px;
-}
+} */
 
-.Cupcake {
+/* .Cupcake {
   border: 1px solid lightgrey;
   border-radius: 10px;
 }
 
 .Cupcake:hover {
   box-shadow: 0 0 5px 2px rgba(33, 32, 41, 0.5);
-}
+} */
