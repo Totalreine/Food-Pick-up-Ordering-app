@@ -18,26 +18,12 @@
 }
 
 .feature_img {
-  /* width: 80%; */
-  /* height: 100%; */
   object-fit: cover;
   margin: auto;
   display: flex;
   justify-content: center;
   flex-direction: row;
 }
-
-
-/* .subtitle:after {
-  display: block;
-  height: 2px;
-  background-color: rgb(255, 207, 215);
-  content: " ";
-  width: 100px;
-  margin: 0 auto;
-  margin-top: 30px;
-} */
-
 
 .btn-full:link {
   background-color: rgb(255, 207, 215);
