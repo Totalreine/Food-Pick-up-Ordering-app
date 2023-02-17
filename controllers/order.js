@@ -28,7 +28,7 @@ exports.getOrder = (req, res) => {
 //     };
 
 exports.postOrders = (req, res) => {
- 
+
   const { user_id, order_total_price } = req.body;
   // add a new order to the orders table
   db.query(

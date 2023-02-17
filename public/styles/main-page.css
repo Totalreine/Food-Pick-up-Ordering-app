@@ -65,10 +65,11 @@
 }
 
 #about-us, #location, #menu {
-  margin-top: 5em;
+  margin-top: 10em;
   text-align: center;
 }
 
-.footer {
-  color: darkblue;
+.map img {
+  margin-bottom: 2em;
 }
+

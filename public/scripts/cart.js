@@ -37,7 +37,7 @@ const updatePrice = (dishPrice, currentTotal) => {
 $(() => {
 
   // Dynamically modifies times from time elements of class timeago
-  
+
   $(document).ready(function() {
     $("time.timeago").timeago();
   });

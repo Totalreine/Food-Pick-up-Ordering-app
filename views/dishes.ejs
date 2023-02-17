@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/app.js"></script>
+  <script defer src="/scripts/cart.js"></script>
+  <script defer src="/scripts/users.js"></script>
+  <script defer src="/scripts/restaurent.js"></script>
+  <script defer src="/scripts/userOrderAndCart.js"></script>
+
+  <link rel="stylesheet" href="/styles/menu.css">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
+  <!-- JQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+  <title>Menu</title>
+
+</head>
+<header>
+  <li class="main-menu"> <a href="/"> Main Menu </a> </li>
+</header>
+
+<body>
+
+  <div class="cart">
+      <div class="title">
+        <h5>Cart Summary</h5>
+      </div>
+      <div class="content">
+        <h6>Total</h6>
+        <h2 class="font-bold total-price">$0.00</h2>
+        <hr>
+          <div class="btn-group">
+            <!-- MAKE BUTTON GO TO ORDERS?? -->
+            <form action="/" method="GET" class="d-inline">
+              <button class="btn btn-primary btn-sm" style="margin-left: 7em;"
+              id="checkout-btn">Checkout</button>
+            </form>
+          </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<div class="container">
+  <div class="full-menu">
+
+    <div class="title">
+      <h5 style="margin-top: 50px; margin-bottom: 50px; color: grey;"><b>MENU ITEMS</b></h5>
+    </div>
+
+    <% for (let dish of dishes) { %>
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>
+                  <div class="cart-product-image">
+                    <img src="<%= dish.picture_url %>" class="dish-imgs">
+                  </div>
+                </td>
+                <td class="description">
+                  <h3>
+                    <%= dish.name %>
+                  </h3>
+                  <p class="small">
+                    <%= dish.description %>
+                  </p>
+                    <i class="fa fa-trash" style="margin-left: 8em;"></i>
+                    <button type="submit" class="delete-dish-btn" data-dish-price="<%= dish.price %>"
+                      data-dish-id=<%=dish.id %>>Delete Item</button>
+                </td>
+                <td>
+                  <h4 class="price">
+                    $<%= dish.price %>
+                  </h4>
+                </td>
+                <td class="addButton">
+                  <button type="submit" class="btn add-dish-btn"  style="margin-top: 4em;" data-dish-price="<%= dish.price%>"
+                    data-dish-id=<%=dish.id %>>ADD</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      <% } %>
+  </div>
+
+  <!-- <h3 id="flavour of the month">Flavour of the Month</h3>
+  <section id="FlavMonth">
+    <div class="Cupcake">
+      <img src="/images/CherryLoveCupcake.jpeg" alt="Cherry Love">
+      <h4>Cherry Love</h4>
+      <p>Chocolate cake filled with cherry jam and topped with pink buttercream frosting and a cherry</p>
+    </div>
+
+    <div class="Cupcake">
+      <img src="/images/SweetHeartCupcake.jpeg" alt="Sweet Heart">
+      <h4>Sweet Heart</h4>
+      <p>Vanilla cake with pink vanilla buttercream frosting topped with sprinkles</p>
+    </div>
+  </section>
+
+  <h3 id="classics">Classic </h3>
+  <section id="Classic">
+    <div class="Cupcake">
+      <img src="/images/ChocolateCupcake.jpeg" alt="Chocolate">
+      <h4>Chocolate</h4>
+      <p>Chocolate cake with chocolate buttercream frosting</p>
+    </div>
+    <div class="Cupcake">
+      <img src="/images/RedVelvetCupcake.jpeg" alt="Red Velvet">
+      <h4>Red Velvet</h4>
+      <p>Red velvet cake topped with cream cheese frosting</p>
+    </div>
+  </section>
+
+  <h3 id="vegan">Vegan </h3>
+  <section id="Vegan">
+    <div class="Cupcake">
+      <img src="/images/CoconutCupcake.jpeg" alt="Coconut">
+      <h4>Coconut</h4>
+      <p>Coconut cake with vegan cream cheese frosting topped with coconut shavings</p>
+    </div>
+    <div class="Cupcake">
+      <img src="/images/ChocamelCupcake.jpeg" alt="Chocamel">
+      <h4>Chocamel</h4>
+      <p>Chocolate cake filled with a caramel centre and topped with a vegan caramel buttercream and caramel sauce
+      </p>
+    </div>
+  </section>
+
+  <h3 id="gf">Gluten Free </h3>
+  <section id="GF">
+    <div class="Cupcake">
+      <img src="/images/CoffeeCupcake.jpeg" alt="Coffee">
+      <h4>Coffee</h4>
+      <p>Coffee cake topped with mocha buttercream frosting and a chocolate covered coffee bean</p>
+    </div>
+    <div class="Cupcake">
+      <img src="/images/LemonCupcake.jpeg" alt="Lemon">
+      <h4>Lemon</h4>
+      <p>Lemon cupcake with cream cheese frosting and lemon zest on top </p>
+    </div>
+  </section> -->
+  </body>
+
+</html>
