@@ -2,18 +2,18 @@
 const db = require('../db/connection');
 
 exports.getOrder = (req, res) => {
-router.get("/", (req, res) => {
-  db.query(  db.query(`SELECT * FROM order_details JOIN customers ON order_details.id=customer.id`)
-  )
-    .then(data => {
-      const placedOrders = data.rows;
-      res.json({ placedOrders });
+  router.get("/", (req, res) => {
+    db.query(  db.query(`SELECT * FROM order_details JOIN customers ON order_details.id=customer.id`)
+    )
+      .then(data => {
+        const placedOrders = data.rows;
+        res.json({ placedOrders });
+      })
+      .catch(err => {
+        res.status(500).json({ error: err.message });
+      });
     })
-    .catch(err => {
-      res.status(500).json({ error: err.message });
-    });
-  })
-};
+  };
 
 // exports.getOrders = (req, res) => {
 // const id = parseInt(req.params.id);
